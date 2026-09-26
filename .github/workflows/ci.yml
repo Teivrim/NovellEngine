@@ -1,0 +1,39 @@
+﻿# ── NovellEngine ────────────────────────────────────────────────────────
+# Проект собирается MinGW g++, и build.bat ожидает именно его.
+# На образах GitHub windows-latest MinGW лежит в C:\mingw64 — достаточно
+# добавить его в PATH, ничего ставить не нужно.
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Сборка редактора (MinGW g++)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Добавить MinGW в PATH
+        run: |
+          $env:PATH = "C:\mingw64\bin;$env:PATH"
+          echo "C:\mingw64\bin" >> $env:GITHUB_PATH
+          g++ --version
+
+      - name: Сборка
+        run: cmd /c build.bat
+
+      - name: Бинарник на месте
+        run: |
+          if (-not (Test-Path build\NovellEngine.exe)) {
+            "Бинарник не создан"; exit 1
+          }
+          $f = Get-Item build\NovellEngine.exe
+          "NovellEngine.exe: {0:N0} байт" -f $f.Length
+          if ($f.Length -lt 100000) { "Подозрительно мало"; exit 1 }
