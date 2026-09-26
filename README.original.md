@@ -1,60 +1,56 @@
-# Novell Engine
+# Novell Engine v0.3.0
 
-Visual novel editor with timeline, script panel, hierarchy, scene editor, inspector, and asset browser.
+> Визуальный редактор визуальных новел на C++20. Таймлайн, инспектор, undo/redo, формат .vne.
 
-## Controls
+| | |
+|---|---|
+| Категория | Инструмент |
+| Статус | Готово к продаже |
+| Собственный код | **3 319 строк** в 8 файлах |
+| Сторонние зависимости | 0 |
+| Стек | `C++20`, `MinGW`, `Win32`, `GDI+` |
+| Рекомендованная цена | $29 |
+| Площадки | itch.io, gumroad, boosty |
 
-| Key | Action |
-|-----|--------|
-| F1 | Toggle debug overlay |
-| F5 | Toggle preview mode |
-| F11 | Fullscreen |
-| Shift+drag | Snap-to-grid |
-| [ / ] | Decrease/increase snap grid size |
-| Ctrl+Z / Ctrl+Y | Undo / Redo |
-| Ctrl+C / Ctrl+V | Copy / Paste objects |
-| Ctrl+G | Toggle grid |
-| Ctrl+M | Toggle snap |
-| Ctrl+click | Multi-select in Hierarchy |
-| Ctrl+N | New project |
-| Ctrl+S | Save project |
-| Ctrl+O | Open project |
-| Ctrl+D | Duplicate selected |
-| Ctrl+F | Zoom to fit scene |
-| R / E / T | Add rectangle / ellipse / text |
-| Del | Delete selected |
-| Scroll wheel | Scroll panels / zoom scene |
-| Right-click | Context menu (add objects) |
-| Drag files from Explorer | Import assets |
+## Сборка
 
-## Scene Toolbar
-
-| Button | Action |
-|--------|--------|
-| [-] / [+] | Zoom out / in |
-| Fit | Zoom to fit all objects |
-| Grid | Toggle grid overlay |
-| Snap | Toggle snapping on drag |
-| L / H / R | Align left / center-h / right |
-| T / V / B | Align top / center-v / bottom |
-| Copy / Paste | Duplicate selection via clipboard |
-
-## Build
-
-```bat
-build.bat
+```
+build.bat (MinGW g++, -std=c++20)
 ```
 
-Requires: MinGW g++ (14.2.0+), Windows SDK (gdi32, gdiplus, comctl32, comdlg32)
+- **Проверка:** ✅ Сборка проверена на этой машине.
+- **Время:** ~40 с
 
-## Build Status
+## Что внутри
 
-Working features:
-- Drag-and-drop from Windows Explorer
-- Editor panels: Hierarchy, Scene, Inspector, Script, Asset Browser, Timeline
-- Object lifespan with tick system
-- Snap-to-grid while holding Shift
-- Color picker in Inspector (RGB fields)
-- Script line creation from hierarchy objects
-- Save/Load project files
-- Preview mode with dialogue playback per tick
+- Таймлайн, панель скрипта, иерархия, редактор сцен, инспектор, браузер ассетов
+- Undo/redo на уровне команд, snap-to-grid
+- Свой формат проекта .vne с экспортом и импортом скрипта
+- Отдельное окно предпросмотра
+- Уже выпущен релиз: dist/NovellEngine-v0.3.0.zip, пайплайн package.bat отработан
+- Ноль сторонних библиотек: только системные Win32
+
+## Кому подойдёт
+
+Студенты и инди, делающие визуальные новеллы, которым нужен редактор, а не Unity
+
+## Чем отличается от аналогов
+
+vn.py и Ren'Py — скриптовые. Здесь визуальный редактор сцен и таймлайн на чистом Win32, без рантайма и без зависимостей.
+
+## Требования
+
+- Компилятор: MinGW-w64 g++ 14+ либо MSVC
+- Сеть не нужна
+
+## Сторонние компоненты
+
+**Сторонних компонентов нет.** Весь код — оригинальный. Самый чистый случай для коммерческого распространения: нечего атрибутировать и нечего согласовывать.
+
+## Лицензия
+
+MIT — см. [`LICENSE`](LICENSE). Продаётся как есть, без гарантий (as-is), см. `LICENSE`.
+
+---
+
+© TEIVRIM 2026. Сделано 2026.
